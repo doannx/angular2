@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'my-app',
   template: `
@@ -11,5 +12,5 @@ import { Component } from '@angular/core';
   `
 })
 export class AppComponent {
-  title = "Simple CRUD Angular2 App"
+  title = "Simple CRUD Angular2 App";
 }

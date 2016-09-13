@@ -9,15 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var album_service_1 = require('./album.service');
 var AlbumListComponent = (function () {
-    function AlbumListComponent() {
+    function AlbumListComponent(albumService) {
+        this.albumService = albumService;
+        this.albums = [];
     }
+    AlbumListComponent.prototype.getAlbums = function () {
+        //this.albumService.getAlbums().then(albums => this.albums = albums);
+        if (this.albums.length == 0) {
+            this.albums = this.albumService.getAlbums();
+        }
+        else {
+            console.log(this.albums.length);
+        }
+    };
+    AlbumListComponent.prototype.ngOnInit = function () {
+        this.getAlbums();
+    };
     AlbumListComponent = __decorate([
         core_1.Component({
             selector: 'album-list',
-            templateUrl: 'app/album-list.component.html'
+            templateUrl: 'app/album-list.component.html',
+            providers: [album_service_1.AlbumService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [album_service_1.AlbumService])
     ], AlbumListComponent);
     return AlbumListComponent;
 }());
