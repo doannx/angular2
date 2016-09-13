@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   template: `
       <h1>{{title}}</h1>
-      <a routerLink="/artists/43ZHCT0cAZBISjO8DG9PnE">Album List</a>
-      <a routerLink="/create">Create Album</a>
+      <nav>
+        <a routerLink="/artists/43ZHCT0cAZBISjO8DG9PnE">Album List</a>
+        <a routerLink="/create">Create Album</a>
+      </nav>
       <router-outlet></router-outlet>
   `
 })

@@ -10,6 +10,11 @@ var appRoutes = [
     {
         path: 'create',
         component: album_form_component_1.AlbumFormComponent
+    },
+    {
+        path: '',
+        redirectTo: 'artists/43ZHCT0cAZBISjO8DG9PnE',
+        pathMatch: 'full'
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

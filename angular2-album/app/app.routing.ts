@@ -12,6 +12,11 @@ const appRoutes: Routes = [
   {
     path: 'create',
     component: AlbumFormComponent
+  },
+  {
+    path: '',
+    redirectTo: 'artists/43ZHCT0cAZBISjO8DG9PnE',
+    pathMatch: 'full'
   }
 ];
 
