@@ -16,6 +16,11 @@ var AlbumService = (function () {
     AlbumService.prototype.getAlbums = function () {
         return mock_albums_1.ALBUMS;
     };
+    AlbumService.prototype.getAlbum = function (id) {
+        return this.getAlbums().find(function (album) {
+            return (album.id == id);
+        });
+    };
     AlbumService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

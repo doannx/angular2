@@ -17,6 +17,10 @@ const appRoutes: Routes = [
     path: '',
     redirectTo: 'artists/43ZHCT0cAZBISjO8DG9PnE',
     pathMatch: 'full'
+  },
+  {
+    path: 'detail/:id',
+    component: AlbumFormComponent
   }
 ];
 

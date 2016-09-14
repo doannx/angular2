@@ -2,7 +2,8 @@
   <h1>Album List</h1>
   <ul>
     <li *ngFor="let album of albums">
-      <span class="badge">{{album.id}}</span> {{album.name}}
+      <span class="badge">{{album.id}}</span> {{album.name}}&nbsp;
+      <button (click)="onSelect(album)">Detail</button>
     </li>
   </ul>
 </div>

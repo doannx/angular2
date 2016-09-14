@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var album_service_1 = require('./album.service');
 var AlbumListComponent = (function () {
-    function AlbumListComponent(albumService) {
+    function AlbumListComponent(albumService, router) {
         this.albumService = albumService;
+        this.router = router;
         this.albums = [];
     }
     AlbumListComponent.prototype.getAlbums = function () {
@@ -24,6 +26,12 @@ var AlbumListComponent = (function () {
             console.log(this.albums.length);
         }
     };
+    AlbumListComponent.prototype.onSelect = function (album) {
+        var link = ['/detail', album.id];
+        this.selectedAlbum = album;
+        console.log(album.name);
+        this.router.navigate(link);
+    };
     AlbumListComponent.prototype.ngOnInit = function () {
         this.getAlbums();
     };
@@ -33,7 +41,7 @@ var AlbumListComponent = (function () {
             templateUrl: 'app/album-list.component.html',
             providers: [album_service_1.AlbumService]
         }), 
-        __metadata('design:paramtypes', [album_service_1.AlbumService])
+        __metadata('design:paramtypes', [album_service_1.AlbumService, router_1.Router])
     ], AlbumListComponent);
     return AlbumListComponent;
 }());
