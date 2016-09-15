@@ -6,8 +6,8 @@ import { AlbumService } from './album.service';
 
 @Component({
   selector: 'album-list',
-  templateUrl: 'app/album-list.component.html',
-  providers: [ AlbumService ]
+  templateUrl: 'app/album-list.component.html'
+  
 })
 export class AlbumListComponent implements OnInit {
 
@@ -21,18 +21,12 @@ export class AlbumListComponent implements OnInit {
   ) { }
 
   getAlbums(): void {
-    //this.albumService.getAlbums().then(albums => this.albums = albums);
-    if (this.albums.length==0) {
-        this.albums = this.albumService.getAlbums();
-    } else {
-        console.log(this.albums.length);
-    }
+    this.albumService.getAlbums().then(albums => this.albums = albums);
   }
 
   onSelect(album: Album): void {
     let link = ['/detail', album.id];
     this.selectedAlbum = album;
-    console.log(album.name);
     this.router.navigate(link);
   }
 

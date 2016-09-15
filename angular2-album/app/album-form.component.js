@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var album_1 = require('./album');
 var album_service_1 = require('./album.service');
 var AlbumFormComponent = (function () {
     function AlbumFormComponent(albumService, route) {
@@ -20,25 +19,24 @@ var AlbumFormComponent = (function () {
         this.submitted = false;
     }
     AlbumFormComponent.prototype.onSubmit = function () {
-        console.log("submit...");
         this.submitted = true;
     };
     AlbumFormComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var id = +params['id'];
-            _this.album = _this.albumService.getAlbum(id);
+            _this.albumService.getAlbum(id).then(function (album) {
+                _this.album = album;
+            });
         });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', album_1.Album)
-    ], AlbumFormComponent.prototype, "album", void 0);
+    AlbumFormComponent.prototype.goBack = function () {
+        window.history.back();
+    };
     AlbumFormComponent = __decorate([
         core_1.Component({
             selector: 'album-form',
-            templateUrl: 'app/album-form.component.html',
-            providers: [album_service_1.AlbumService]
+            templateUrl: 'app/album-form.component.html'
         }), 
         __metadata('design:paramtypes', [album_service_1.AlbumService, router_1.ActivatedRoute])
     ], AlbumFormComponent);

@@ -5,12 +5,13 @@ import { ALBUMS } from './mock-albums';
 
 @Injectable()
 export class AlbumService {
-  getAlbums(): Album[] {
-    return ALBUMS;
+  
+  getAlbums(): Promise<Album[]> {
+    return Promise.resolve(ALBUMS);
   }
-  getAlbum(id: number): Album {
-    return this.getAlbums().find(album => {
-      return (album.id == id);
-    });
+  
+  getAlbum(id: number): Promise<Album> {
+    return this.getAlbums()
+               .then(albums => albums.find(album => album.id === id));
   }
 }

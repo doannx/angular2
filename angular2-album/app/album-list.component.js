@@ -18,18 +18,12 @@ var AlbumListComponent = (function () {
         this.albums = [];
     }
     AlbumListComponent.prototype.getAlbums = function () {
-        //this.albumService.getAlbums().then(albums => this.albums = albums);
-        if (this.albums.length == 0) {
-            this.albums = this.albumService.getAlbums();
-        }
-        else {
-            console.log(this.albums.length);
-        }
+        var _this = this;
+        this.albumService.getAlbums().then(function (albums) { return _this.albums = albums; });
     };
     AlbumListComponent.prototype.onSelect = function (album) {
         var link = ['/detail', album.id];
         this.selectedAlbum = album;
-        console.log(album.name);
         this.router.navigate(link);
     };
     AlbumListComponent.prototype.ngOnInit = function () {
@@ -38,8 +32,7 @@ var AlbumListComponent = (function () {
     AlbumListComponent = __decorate([
         core_1.Component({
             selector: 'album-list',
-            templateUrl: 'app/album-list.component.html',
-            providers: [album_service_1.AlbumService]
+            templateUrl: 'app/album-list.component.html'
         }), 
         __metadata('design:paramtypes', [album_service_1.AlbumService, router_1.Router])
     ], AlbumListComponent);

@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var album_form_component_1 = require('./album-form.component');
 var album_list_component_1 = require('./album-list.component');
+var album_service_1 = require('./album.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
@@ -24,6 +25,9 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent,
                 album_form_component_1.AlbumFormComponent,
                 album_list_component_1.AlbumListComponent
+            ],
+            providers: [
+                album_service_1.AlbumService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

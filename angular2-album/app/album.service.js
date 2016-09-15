@@ -14,12 +14,11 @@ var AlbumService = (function () {
     function AlbumService() {
     }
     AlbumService.prototype.getAlbums = function () {
-        return mock_albums_1.ALBUMS;
+        return Promise.resolve(mock_albums_1.ALBUMS);
     };
     AlbumService.prototype.getAlbum = function (id) {
-        return this.getAlbums().find(function (album) {
-            return (album.id == id);
-        });
+        return this.getAlbums()
+            .then(function (albums) { return albums.find(function (album) { return album.id === id; }); });
     };
     AlbumService = __decorate([
         core_1.Injectable(), 
