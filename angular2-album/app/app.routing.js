@@ -2,6 +2,7 @@
 var router_1 = require('@angular/router');
 var album_form_component_1 = require('./album-form.component');
 var album_list_component_1 = require('./album-list.component');
+var about_component_1 = require('./about-component');
 var appRoutes = [
     {
         path: 'artists/43ZHCT0cAZBISjO8DG9PnE',
@@ -19,6 +20,10 @@ var appRoutes = [
     {
         path: 'detail/:id',
         component: album_form_component_1.AlbumFormComponent
+    },
+    {
+        path: 'about',
+        component: about_component_1.AboutComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

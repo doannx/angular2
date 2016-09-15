@@ -1,10 +1,16 @@
 <div class="container">
-  <div [hidden]="submitted" *ngIf="album">
-    <h1>Create/Edit Album</h1>
-    <form *ngIf="active" (ngSubmit)="onSubmit()" #albumForm="ngForm">
+  <div *ngIf="album">
+    <h1>{{album.name}}</h1>
+    <form (ngSubmit)="onSubmit()" #albumForm="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="album.name" name="name" ref-k="ngModel" >
+        <input type="text" class="form-control" id="name" 
+              required 
+              [(ngModel)]="album.name" 
+              name="name" 
+              ref-k="ngModel"
+              [disabled]="!editMode" 
+              >
         <div [hidden]="k.valid || k.pristine"
              class="alert alert-danger">
           Name is required
@@ -12,13 +18,18 @@
       </div>
       <div class="form-group">
         <label for="type">Type</label>
-        <input type="text" class="form-control" id="type" required [(ngModel)]="album.type" name="type">
+        <input type="text" class="form-control" id="type" required [(ngModel)]="album.type" name="type" [disabled]="!editMode">
       </div>
       <div class="form-group">
         <label for="albumType">Album Type</label>
-        <input type="text" class="form-control" id="albumType" required [(ngModel)]="album.albumType" name="albumType">
+        <input type="text" class="form-control" id="albumType" required [(ngModel)]="album.albumType" name="albumType" [disabled]="!editMode">
       </div>
-      <button type="submit" class="btn btn-default" [disabled]="!albumForm.form.valid">Submit</button>
+      <button type="submit" class="btn btn-default"
+                            (click)="onSubmit()" 
+                            [disabled]="editMode && !albumForm.form.valid">
+        <span *ngIf="!editMode">Edit</span>
+        <span *ngIf="editMode">Submit</span>
+      </button>
       <button class="btn btn-default" (click)="goBack()">Back</button>
     </form>
   </div>

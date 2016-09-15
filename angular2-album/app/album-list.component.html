@@ -1,9 +1,23 @@
 <div class="container">
   <h1>Album List</h1>
-  <ul>
-    <li *ngFor="let album of albums">
-      <span class="badge">{{album.id}}</span> {{album.name}}&nbsp;
-      <button (click)="onSelect(album)">Detail</button>
-    </li>
-  </ul>
+  <div class="row" *ngFor="let album of albums">
+    <div class="col-sm-2">
+      <span class="badge" (click)="onSelect(album)">{{album.id}}</span>
+    </div>
+    <div class="col-sm-2">
+      <p>{{album.name}}</p>
+    </div>
+    <div class="col-sm-2">
+      <p>{{album.type}}</p>
+    </div>
+    <div class="col-sm-2">
+      <p>{{album.albumType}}</p>
+    </div>
+    <div class="col-sm-2">
+      <p><img class="img-responsive" width="50" height="50" [src]="album.image"></p>
+    </div>
+    <div class="col-sm-2">
+      <p></p>
+    </div>
+  </div>
 </div>
