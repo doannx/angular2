@@ -15,11 +15,9 @@ var AlbumListComponent = (function () {
     function AlbumListComponent(albumService, router) {
         this.albumService = albumService;
         this.router = router;
-        this.albums = [];
     }
     AlbumListComponent.prototype.getAlbums = function () {
-        var _this = this;
-        this.albumService.getAlbums().then(function (albums) { return _this.albums = albums; });
+        this.albums = this.albumService.getAlbums();
     };
     AlbumListComponent.prototype.onSelect = function (album) {
         var link = ['/detail', album.id];

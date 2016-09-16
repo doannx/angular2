@@ -9,20 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_albums_1 = require('./mock-albums');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var AlbumService = (function () {
-    function AlbumService() {
+    function AlbumService(http) {
+        this.http = http;
     }
     AlbumService.prototype.getAlbums = function () {
-        return Promise.resolve(mock_albums_1.ALBUMS);
+        return this.http.get("http://localhost:3000/albums").map(function (r) { return r.json(); }).catch(this.handleError);
     };
     AlbumService.prototype.getAlbum = function (id) {
-        return this.getAlbums()
-            .then(function (albums) { return albums.find(function (album) { return album.id === id; }); });
+        return this.http.get("http://localhost:3000/albums/" + id).map(function (r) { return r.json(); }).catch(this.handleError);
+    };
+    AlbumService.prototype.handleError = function (error) {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     };
     AlbumService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], AlbumService);
     return AlbumService;
 }());

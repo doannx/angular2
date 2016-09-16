@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import 'rxjs/Rx';
 
 import { Album } from './album';
 import { AlbumService } from './album.service';
@@ -19,7 +20,7 @@ export class AlbumFormComponent implements OnInit {
     private router: Router
   ){}
 
-  editMode = false;
+  editMode = true;
   submitted = false;
 
   onSubmit() {
@@ -36,17 +37,19 @@ export class AlbumFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     this.route.params.forEach((params: Params) => {
-      let id = +params['id'];
+      let id = params['id'];
       if (id) {
-        this.albumService.getAlbum(id).then(album => {
-          this.album = album;
-        });
+        this.album = this.albumService.getAlbum(id);
       } else {
-        this.album = new Album(1, '', '', '');
         this.editMode = true;
       }
     });
+    */
+    
+    this.route.params.flatMap(params => this.albumService.getAlbum(params['id']))
+              .subscribe(album => this.album = album);
   }
 
   goBack(): void {

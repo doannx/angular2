@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Album List</h1>
-  <div class="row" *ngFor="let album of albums">
+  <div class="row" *ngFor="let album of albums | async">
     <div class="col-sm-2">
       <span class="badge" (click)="onSelect(album)">{{album.id}}</span>
     </div>

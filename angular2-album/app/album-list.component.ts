@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { Album } from './album';
 import { AlbumService } from './album.service';
@@ -11,7 +13,7 @@ import { AlbumService } from './album.service';
 })
 export class AlbumListComponent implements OnInit {
 
-  albums: Album[] = [];
+  albums: Observable<Album[]>;
 
   selectedAlbum: Album;
 
@@ -21,7 +23,7 @@ export class AlbumListComponent implements OnInit {
   ) { }
 
   getAlbums(): void {
-    this.albumService.getAlbums().then(albums => this.albums = albums);
+    this.albums = this.albumService.getAlbums();
   }
 
   onSelect(album: Album): void {
