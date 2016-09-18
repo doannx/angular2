@@ -11,28 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var album_service_1 = require('./album.service');
+var artist_service_1 = require('./artist.service');
 var AlbumListComponent = (function () {
-    function AlbumListComponent(albumService, router) {
+    function AlbumListComponent(albumService, artistService, router) {
         this.albumService = albumService;
+        this.artistService = artistService;
         this.router = router;
     }
-    AlbumListComponent.prototype.getAlbums = function () {
-        this.albums = this.albumService.getAlbums();
-    };
     AlbumListComponent.prototype.onSelect = function (album) {
         var link = ['/detail', album.id];
         this.selectedAlbum = album;
         this.router.navigate(link);
     };
     AlbumListComponent.prototype.ngOnInit = function () {
-        this.getAlbums();
+        var _this = this;
+        this.albumService.getAll()
+            .subscribe(function (albums) { return _this.albums = albums; });
+        this.artistService.getAll()
+            .subscribe(function (artists) { return _this.artists = artists; });
     };
     AlbumListComponent = __decorate([
         core_1.Component({
             selector: 'album-list',
             templateUrl: 'app/album-list.component.html'
         }), 
-        __metadata('design:paramtypes', [album_service_1.AlbumService, router_1.Router])
+        __metadata('design:paramtypes', [album_service_1.AlbumService, artist_service_1.ArtistService, router_1.Router])
     ], AlbumListComponent);
     return AlbumListComponent;
 }());

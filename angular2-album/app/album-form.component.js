@@ -17,20 +17,19 @@ var AlbumFormComponent = (function () {
         this.albumService = albumService;
         this.route = route;
         this.router = router;
-        this.editMode = true;
+        this.editMode = false;
         this.submitted = false;
     }
     AlbumFormComponent.prototype.onSubmit = function () {
+        var _this = this;
         if (!this.editMode) {
             this.submitted = true;
             this.editMode = !this.editMode;
         }
         else {
-            // save
-            console.log('new album: ', this.album);
-            // back to list screen
-            var link = ['/artists/43ZHCT0cAZBISjO8DG9PnE'];
-            this.router.navigate(link);
+            // save, then, back to list screen 
+            var link_1 = ['/artists/43ZHCT0cAZBISjO8DG9PnE'];
+            this.albumService.update(this.album).subscribe(function (res) { return _this.router.navigate(link_1); });
         }
     };
     AlbumFormComponent.prototype.ngOnInit = function () {
@@ -45,7 +44,7 @@ var AlbumFormComponent = (function () {
         });
         */
         var _this = this;
-        this.route.params.flatMap(function (params) { return _this.albumService.getAlbum(params['id']); })
+        this.route.params.flatMap(function (params) { return _this.albumService.getById(params['id']); })
             .subscribe(function (album) { return _this.album = album; });
     };
     AlbumFormComponent.prototype.goBack = function () {

@@ -5,23 +5,34 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/Rx';
 
 import { Album } from './album';
-import { ALBUMS } from './mock-albums';
+import { AbstractService } from './iservice';
+import constants = require('./constants');
 
 @Injectable()
-export class AlbumService {
+export class AlbumService extends AbstractService<Album> {
 
-  constructor(private http: Http) {}
-  
-  getAlbums(): Observable<Album[]> {
-    return this.http.get("http://localhost:3000/albums").map((r: Response) => r.json() as Album[]).catch(this.handleError);
-  }
-  
-  getAlbum(id: string): Observable<Album> {
-    return this.http.get("http://localhost:3000/albums/" + id).map((r: Response) => r.json() as Album).catch(this.handleError);
+  constructor(http: Http) {
+    super(http);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  getAll(): Observable<Album[]> {
+    return this.http.get(constants.ALBUMS_API_ENDPOINT)
+      .map((r: Response) => r.json() as Album[])
+      .catch(this.handleError);
+  }
+
+  getById(id: string): Observable<Album> {
+    return this.http.get(constants.ALBUMS_API_ENDPOINT + id)
+      .map((r: Response) => r.json() as Album)
+      .catch(this.handleError);
+  }
+
+  update(album: Album) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.put(
+      constants.ALBUMS_API_ENDPOINT + album['id'],
+      JSON.stringify(album),
+      { headers: headers }
+    ).catch(this.handleError);
   }
 }

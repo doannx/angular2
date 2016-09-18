@@ -17,6 +17,7 @@ var album_form_component_1 = require('./album-form.component');
 var album_list_component_1 = require('./album-list.component');
 var about_component_1 = require('./about-component');
 var album_service_1 = require('./album.service');
+var artist_service_1 = require('./artist.service');
 var app_routing_1 = require('./app.routing');
 var AppModule = (function () {
     function AppModule() {
@@ -30,7 +31,8 @@ var AppModule = (function () {
                 about_component_1.AboutComponent
             ],
             providers: [
-                album_service_1.AlbumService
+                album_service_1.AlbumService,
+                artist_service_1.ArtistService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

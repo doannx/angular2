@@ -8,19 +8,21 @@ import { AlbumFormComponent}  from './album-form.component';
 import { AlbumListComponent}  from './album-list.component';
 import { AboutComponent }     from './about-component';
 import { AlbumService }       from './album.service';
+import { ArtistService }      from './artist.service';
 
 import { routing }            from './app.routing';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, HttpModule, routing ],
-  declarations: [ AppComponent,
-                  AlbumFormComponent,
-                  AlbumListComponent,
-                  AboutComponent
-                ],
-  providers: [
-    AlbumService
+  imports: [BrowserModule, FormsModule, HttpModule, routing],
+  declarations: [AppComponent,
+    AlbumFormComponent,
+    AlbumListComponent,
+    AboutComponent
   ],
-  bootstrap:    [ AppComponent ]
+  providers: [
+    AlbumService,
+    ArtistService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,30 +18,27 @@ var http_1 = require('@angular/http');
 require('rxjs/Rx');
 var iservice_1 = require('./iservice');
 var constants = require('./constants');
-var AlbumService = (function (_super) {
-    __extends(AlbumService, _super);
-    function AlbumService(http) {
+var ArtistService = (function (_super) {
+    __extends(ArtistService, _super);
+    function ArtistService(http) {
         _super.call(this, http);
     }
-    AlbumService.prototype.getAll = function () {
-        return this.http.get(constants.ALBUMS_API_ENDPOINT)
+    ArtistService.prototype.getAll = function () {
+        return this.http.get(constants.ARTISTS_API_ENDPOINT)
             .map(function (r) { return r.json(); })
             .catch(this.handleError);
     };
-    AlbumService.prototype.getById = function (id) {
-        return this.http.get(constants.ALBUMS_API_ENDPOINT + id)
-            .map(function (r) { return r.json(); })
-            .catch(this.handleError);
+    ArtistService.prototype.getById = function () {
+        console.log("Not yet implemented");
     };
-    AlbumService.prototype.update = function (album) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        return this.http.put(constants.ALBUMS_API_ENDPOINT + album['id'], JSON.stringify(album), { headers: headers }).catch(this.handleError);
+    ArtistService.prototype.update = function () {
+        console.log("Not yet implemented");
     };
-    AlbumService = __decorate([
+    ArtistService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], AlbumService);
-    return AlbumService;
+    ], ArtistService);
+    return ArtistService;
 }(iservice_1.AbstractService));
-exports.AlbumService = AlbumService;
-//# sourceMappingURL=album.service.js.map
+exports.ArtistService = ArtistService;
+//# sourceMappingURL=artist.service.js.map

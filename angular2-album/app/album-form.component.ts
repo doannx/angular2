@@ -20,7 +20,7 @@ export class AlbumFormComponent implements OnInit {
     private router: Router
   ){}
 
-  editMode = true;
+  editMode = false;
   submitted = false;
 
   onSubmit() {
@@ -28,11 +28,9 @@ export class AlbumFormComponent implements OnInit {
       this.submitted = true;
       this.editMode = !this.editMode;
     } else {
-      // save
-      console.log('new album: ', this.album);
-      // back to list screen
+      // save, then, back to list screen 
       let link = ['/artists/43ZHCT0cAZBISjO8DG9PnE'];
-      this.router.navigate(link);
+      this.albumService.update(this.album).subscribe((res) => this.router.navigate(link));
     }
   }
 
@@ -48,7 +46,7 @@ export class AlbumFormComponent implements OnInit {
     });
     */
     
-    this.route.params.flatMap(params => this.albumService.getAlbum(params['id']))
+    this.route.params.flatMap(params => this.albumService.getById(params['id']))
               .subscribe(album => this.album = album);
   }
 

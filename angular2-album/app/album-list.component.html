@@ -1,23 +1,28 @@
-<div class="container">
-  <h1>Album List</h1>
-  <div class="row" *ngFor="let album of albums | async">
-    <div class="col-sm-2">
-      <span class="badge" (click)="onSelect(album)">{{album.id}}</span>
-    </div>
-    <div class="col-sm-2">
-      <p>{{album.name}}</p>
-    </div>
-    <div class="col-sm-2">
-      <p>{{album.type}}</p>
-    </div>
-    <div class="col-sm-2">
-      <p>{{album.albumType}}</p>
-    </div>
-    <div class="col-sm-2">
-      <p><img class="img-responsive" width="50" height="50" [src]="album.image"></p>
-    </div>
-    <div class="col-sm-2">
-      <p></p>
-    </div>
+<div class="container" *ngIf="artists">
+  <div>
+    <img src="{{artists[0].images[2].url}}"/>
+    <h2>Albums by {{artists[0].name}}</h2>
   </div>
+  <h1>Album List</h1>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Album Type</th>
+          <th>Type</th>
+          <th>Image</th>
+          <th>External Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let album of albums">
+          <td><p (click)="onSelect(album)">{{album.id}}</p></td>
+          <td><p>{{album.name}}</p></td>
+          <td><p>{{album.type}}</p></td>
+          <td><p>{{album.album_type}}</p></td>
+          <td><p><img class="img-responsive" [width]="album.images[2].width" [height]="album.images[2].height" [src]="album.images[2].url"></p></td>
+          <td><p>{{album.external_urls.spotify}}</p></td>
+      </tbody>
+  </table>
 </div>
