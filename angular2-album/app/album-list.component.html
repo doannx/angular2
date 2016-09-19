@@ -1,9 +1,8 @@
 <div class="container" *ngIf="artists">
   <div>
     <img src="{{artists[0].images[2].url}}"/>
-    <h2>Albums by {{artists[0].name}}</h2>
+    <h2 style="display: inline-block;">Albums by {{artists[0].name}}</h2>
   </div>
-  <h1>Album List</h1>
   <table class="table">
       <thead>
         <tr>
@@ -17,11 +16,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let album of albums">
-          <td><p (click)="onSelect(album)">{{album.id}}</p></td>
+          <td><a (click)="onSelect(album)" style="cursor: pointer;">{{album.id}}</a></td>
           <td><p>{{album.name}}</p></td>
           <td><p>{{album.type}}</p></td>
           <td><p>{{album.album_type}}</p></td>
-          <td><p><img class="img-responsive" [width]="album.images[2].width" [height]="album.images[2].height" [src]="album.images[2].url"></p></td>
+          <td><p><img class="img-responsive" [src]="album.images[2].url"></p></td>
           <td><p>{{album.external_urls.spotify}}</p></td>
       </tbody>
   </table>

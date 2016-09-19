@@ -14,7 +14,6 @@ import { ArtistService } from './artist.service';
 })
 export class AlbumListComponent implements OnInit {
 
-  //albums: Observable<Album[]>;
   albums: Album[];
   artists: Album[];
 
